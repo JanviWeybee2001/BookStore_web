@@ -1,0 +1,93 @@
+﻿@{ 
+    dynamic data = ViewBag.Data; // for ViewBag
+
+    var bookInfo = ViewData["book"] as BookModel; // for ViewData
+
+    //ViewData["Title"] = "Home"; // now, we don't have to need of write this, beacause we direct access this title proprty from Controller
+}
+
+@inject BookStore.Repository.IBookRepository _bookRepository
+
+<section class="jumbotron text-center">
+    <div class="container">
+        @*<h1>Welcome to @ViewBag.appName</h1>
+        <p class="lead text-muted">                             // it is all about ViewBag
+            @data.id && @data.name <br />
+            Id = @ViewBag.Type.id <br />
+            Name = @ViewBag.Type.Author <br />
+            " @ViewBag.Janvi " ___by 'ViewBag.Janvi' we can anything write after ViewBag<br />*@
+
+
+        @*id == @bookInfo.id <br />         // it is all about viewData
+        Author == @bookInfo.Author*@
+
+        @*By this we can access the property @ViewData["customeProperty"]*@
+
+        <environment names="Development">
+            <h3>Development</h3>
+        </environment>
+
+        <environment names="Production, Staging">
+            <h3>Production</h3>
+        </environment>
+
+
+        <h1>Welcome to @ViewData["appName"]</h1>
+        <p class="lead text-muted">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam voluptas unde in illum ea fugit.
+            Quibusdam assumenda sint illum inventore minima incidunt possimus
+            , provident ipsam sunt distinctio cumque, eius unde.
+        </p>
+        <p>
+            <a href="#" class="btn btn-primary my-2">Search Books</a>
+        </p>
+
+        @*@foreach(var item in await _bookRepository.GetAllBooks())
+        {
+            <h2>@item.Title</h2>
+        }*@
+    </div>
+</section>
+
+<div class="py-5 bg-light">
+    <div class="container">
+        <h3 class="h3 text-center">Top Books</h3>
+        @*<big>Top Books in BIG</big>
+        <p big>Top Books in using BIG Attribute</p>*@
+
+        @await Component.InvokeAsync("TopBooks", new { count =4 })
+
+        <!--<vc:top-books count="3"></vc:top-books>-->  @*By this we can direct access the Components*@
+        
+        
+    </div>
+</div>
+
+@section breadcrumb {
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Page-1</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="#">Index</a></li>
+        </ol>
+    </nav>
+}
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            //alert("Document is ready");
+        })
+    </script>
+}
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "All Book List";
+}
+
+@*@model IEnumerable<BookModel>*@
+
+@{
+    var parameters = new Dictionary<string, string>()
+    {
+        {"name","Janvi" },
+        {"company","webgentle" },
+        {"appName","bookStore" }
+    };
+}
+@*If you want to more than one parameter in the url, then you can use this method. BY '''asp-all-route-data="parameters"''' it'll igonre the individual parameter' *@
+
+<div class="container">
+    <h3 class="display-4">All Books</h3>
+    <div class="row">
+
+        @foreach (var book in Model)
+        {
+            <div class="col-md-4">
+                <partial name="_bookthumbnail" model="@book" />
+            </div>
+        }
+    </div>
+</div>
+
+
